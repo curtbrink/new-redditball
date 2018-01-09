@@ -53,11 +53,7 @@ while (match = playerString.exec(boxString)) {
 }
 */
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function doStuff() {
+function doStuff() {
     // do loading indicator and load player data
     $(".loadingContainer").css("display", "block");
 
