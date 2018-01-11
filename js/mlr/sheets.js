@@ -9,7 +9,8 @@ function buildWholeUrl() {
     var teams = ["BAL", "CLE", "TOR", "BOS", "DET", "TBR",
                  "HOU", "MIN", "SEA", "OAK", "TEX",
                  "MTL", "PHI", "PIT", "WSH", "MIL", "STL",
-                 "COL", "ARI", "LAD", "SDP", "SFG"];
+                 "COL", "ARI", "LAD", "SDP", "SFG",
+                 "AKR", "HVR", "SAV", "TRN"];
 
     var requestString = URL;
     for (var i = 0; i < teams.length; i++) {
@@ -30,7 +31,6 @@ function buildKey() {
 }
 
 function buildPlayerList() {
-
     $.ajax({
         url: buildWholeUrl()
     }).done(handleData);
@@ -53,6 +53,36 @@ function handleData() {
         playerList: everyPlayer,
         pitcherList: pitchers
     };
+
+    window.playerData.pitcherList.forEach(function(player) {
+        var badge = "BAL";
+        if (player.pitcherType == "finesse")
+            badge = "FIN";
+        else if (player.pitcherType == "strikeout")
+            badge = "STR";
+        badge += " / ";
+        var hand = "R";
+        if (player.hand == "Left")
+            hand = "L";
+        badge += hand;
+
+        $('#pitcherListItems').append('<li class="list-group-item">' + player.playerName + ' (' + player.redditName + ')<span class="badge">' + badge + '</span></li>');
+    });
+
+    window.playerData.playerList.forEach(function(player) {
+        var badge = "NEU";
+        if (player.batterType == "power")
+            badge = "POW";
+        else if (player.batterType == "contact")
+            badge = "CON";
+        badge += " / ";
+        var hand = "R";
+        if (player.hand == "Left")
+            hand = "L";
+        badge += hand;
+
+        $('#batterListItems').append('<li class="list-group-item">' + player.playerName + ' (' + player.redditName + ')<span class="badge">' + badge + '</span></li>');
+    });
 
     $(".loadingContainer").css("display", "none");
 }

@@ -41,3 +41,45 @@ function getResult(pitcher, pitch, batter, swing) {
     }
     return null;
 }
+
+function doCalc() {
+    console.log("Doing calc");
+    var pitcherName = $('.pitcher-text').val();
+    var batterName = $('.batter-text').val();
+
+    pitcherName = pitcherName.slice(0, pitcherName.indexOf("(") - 1);
+    batterName = batterName.slice(0, batterName.indexOf("(") - 1);
+
+    // lookup
+    var pitcher;
+    for (var i = 0; i < window.playerData.pitcherList.length; i++) {
+        if (pitcherName == window.playerData.pitcherList[i].playerName) {
+            pitcher = window.playerData.pitcherList[i];
+            break;
+        }
+    }
+    if (!pitcher) {
+        $('#result').html('Pitcher not found');
+        return;
+    }
+
+    var batter;
+    for (var i = 0; i < window.playerData.playerList.length; i++) {
+        if (batterName == window.playerData.playerList[i].playerName) {
+            batter = window.playerData.playerList[i];
+            break;
+        }
+    }
+    if (!batter) {
+        $('result').html('Batter not found');
+        return;
+    }
+    
+    var pitch = parseInt($('.pitcher-number').val());
+    var swing = parseInt($('.batter-number').val());
+
+    var result = getResult(pitcher, pitch, batter, swing);
+    var diff = getDifference(pitch, swing);
+
+    $('#result').html("Result: " + result.result + " (Diff: " + diff + ")<br/>(" + result.start_number + " - " + result.end_number + ")");
+}

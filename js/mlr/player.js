@@ -71,7 +71,7 @@ class Player {
         var weightedHomeRuns = 1.95 * this.hittingStats.HR;
         this.hittingStats.wOBA = (weightedWalks + weightedSingles + weightedDoubles + weightedTriples + weightedHomeRuns) / this.hittingStats.PA;
 
-        console.log(this);
+        //console.log(this);
     }
 
 }

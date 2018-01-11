@@ -40,25 +40,32 @@
       <!-- Example row of columns -->
       <div class="pitcher-box col-md-6">
         <div id="pitcherBox" class="form-group">
+          <h2>Pitcher</h2>
           <input class="form-control input-lg pitcher-text" placeholder="Enter pitcher..."/>
           <input class="form-control input-lg pitcher-number" placeholder="Pitch #..."/>
         </div>
+        <ul id="pitcherListItems" class="list-group" style="display:none"></ul>
       </div>
       <div class="batter-box col-md-6">
         <div id="batterBox" class="form-group">
+          <h2>Batter</h2>
           <input class="form-control input-lg batter-text" placeholder="Enter batter..."/>
           <input class="form-control input-lg batter-number" placeholder="Swing #..."/>
         </div>
+        <ul id="batterListItems" class="list-group" style="display:none"></ul>
       </div>
-      <div class="col-md-6" style="text-align: center">
-        <a id="calcButton" class="btn btn-default" href="javascript:testCalc();" role="button">Test Calculator &raquo;</a>
+      <div class="action-buttons col-md-6" style="text-align: center">
+        <a id="calcButton" class="btn btn-default disabled" href="javascript:doCalc();" role="button">Test Calculator &raquo;</a>
         <a class="btn btn-danger disabled" href="javascript:resetCalc();" role="button">Reset Fields &raquo;</a>
       </div>
-
-      <h1 id="result">Result here.</h1>
+      <div class="result-box col-md-6">
+        <h1 id="result">Result here.</h1>
+      </div>
     </div> <!-- /container -->
     <div class="footer">
-      &copy; 2017 Zamboneh Enterprises for /r/fakebaseball
+      &copy; 2018 Zum Boehner Enterprises for /r/fakebaseball<br/>
+      Some calculator code &copy; 2017 /u/aviator157
+
     </div>
     <script src="js/vendor/jquery-1.11.2.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
