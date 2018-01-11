@@ -11,6 +11,26 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  font-family: 'Asul';
+}
+.navbar-brand {
+  font-family: 'Lobster';
+  font-size: 20pt;
+}
+
+.batter-box, .pitcher-box {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.pitcher-text, .batter-text {
+  float: left;
+  width: 75%;
+}
+.pitcher-number, .batter-number {
+  float: right;
+  width: 25%;
+  padding-left: 10px;
 }
 .footer {
   position: absolute;
@@ -51,6 +71,23 @@ body {
 
   margin-top: -60px;
   margin-left: -60px;
+}
+
+.loadText {
+  color: white;
+  text-shadow: 2px 2px 5px #000000;
+  font-size: 20pt;
+  width: 500px;
+  height: 50px;
+  text-align: center;
+
+  font-family: 'Georgia';
+
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -250px;
 }
 
 @keyframes spin {

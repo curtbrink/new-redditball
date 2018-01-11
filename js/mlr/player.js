@@ -6,11 +6,25 @@ class Player {
         
         this.playerName = data[0].slice(0, data[0].indexOf("(") - 1);
         this.redditName = data[0].slice(data[0].indexOf("(") + 1, data[0].indexOf(")"));
-
-        this.type = data[1];
         this.hand = data[2];
 
-        this.isPitcher = this.type.includes("Balanced") || this.type.includes("Finesse") || this.type.includes("Strikeout");
+        this.batterType = "neutral";
+        if (data[1].includes("Power"))
+            this.batterType = "power";
+        else if (data[1].includes("Contact"))
+            this.batterType = "contact";
+
+        this.pitcherType = null;
+        if (data[1].includes("/")) {
+            // is a pitcher
+            this.pitcherType = "balanced";
+            if (data[1].includes("Strikeout"))
+                this.pitcherType = "strikeout";
+            else if (data[1].includes("Finesse"))
+                this.pitcherType = "finesse";
+        }
+
+        this.isPitcher = this.pitcherType != null;
 
         this.hittingStats = {
             "G": +data[3],

@@ -14,6 +14,7 @@
                 padding-bottom: 20px;
             }
         </style>
+        <link href="https://fonts.googleapis.com/css?family=Asul|Lobster" rel="stylesheet"> 
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -26,12 +27,6 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">MLR Calculator Redux</a>
         </div>
       </div>
@@ -39,34 +34,28 @@
 
     <div class="loadingContainer">
       <div class="loader"></div>
+      <div class="loadText">Pulling players and stats from sheets</div>
     </div>
     <div class="container">
       <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <div class="pitcher-box col-md-6">
+        <div id="pitcherBox" class="form-group">
+          <input class="form-control input-lg pitcher-text" placeholder="Enter pitcher..."/>
+          <input class="form-control input-lg pitcher-number" placeholder="Pitch #..."/>
         </div>
       </div>
+      <div class="batter-box col-md-6">
+        <div id="batterBox" class="form-group">
+          <input class="form-control input-lg batter-text" placeholder="Enter batter..."/>
+          <input class="form-control input-lg batter-number" placeholder="Swing #..."/>
+        </div>
+      </div>
+      <div class="col-md-6" style="text-align: center">
+        <a id="calcButton" class="btn btn-default" href="javascript:testCalc();" role="button">Test Calculator &raquo;</a>
+        <a class="btn btn-danger disabled" href="javascript:resetCalc();" role="button">Reset Fields &raquo;</a>
+      </div>
 
-      <button onclick="buildPlayerList()">Get Detroit B3</button>
-
-      <hr>
-
-      <footer>
-        <p>&copy; Company 2015</p>
-      </footer>
+      <h1 id="result">Result here.</h1>
     </div> <!-- /container -->
     <div class="footer">
       &copy; 2017 Zamboneh Enterprises for /r/fakebaseball
