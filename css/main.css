@@ -21,12 +21,28 @@ body {
 .batter-box, .pitcher-box {
   padding-top: 25px;
   padding-bottom: 25px;
-  height: 200px;
+  height: 130px;
   z-index: 3;
+}
+
+#pitcherTypeBadge, #pitcherHandBadge, #batterTypeBadge, #batterHandBadge {
+  margin-top: 15px;
+  margin-right: 15px;
+  font-size: 12pt;
+  padding: 7px 7px 7px 7px;
+}
+
+.badge-container {
+  height: 60px;
 }
 
 .action-buttons, .result-box {
   z-index: 2;
+  height: 75px;
+}
+
+.result-box p {
+  font-size: 24pt;
 }
 
 .pitcher-text, .batter-text {

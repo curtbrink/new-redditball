@@ -67,6 +67,25 @@ $('#pitcherListItems').click(function(e) {
         var pitcherText = e.target.textContent;
         $('.pitcher-text').val(pitcherText.slice(0, pitcherText.indexOf(')')+1));
         $('#pitcherListItems').css('display', 'none');
+
+        // badges
+        var pitcherName = $('.pitcher-text').val();
+        pitcherName = pitcherName.slice(0, pitcherName.indexOf("(") - 1);
+        
+        var pitcher;
+        for (var i = 0; i < window.playerData.pitcherList.length; i++) {
+            if (pitcherName == window.playerData.pitcherList[i].playerName) {
+                pitcher = window.playerData.pitcherList[i];
+                break;
+            }
+        }
+        if (!pitcher) {
+            return;
+        }
+
+        var type = pitcher.pitcherType.charAt(0).toUpperCase() + pitcher.pitcherType.slice(1, pitcher.pitcherType.length);
+        $('#pitcherTypeBadge').html(type);
+        $('#pitcherHandBadge').html(pitcher.hand);
     }
 });
 $('#batterListItems').click(function(e) {
@@ -74,6 +93,25 @@ $('#batterListItems').click(function(e) {
         var batterText = e.target.textContent;
         $('.batter-text').val(batterText.slice(0, batterText.indexOf(')')+1));
         $('#batterListItems').css('display', 'none');
+
+        // badges
+        var batterName = $('.batter-text').val();
+        batterName = batterName.slice(0, batterName.indexOf("(") - 1);
+        
+        var batter;
+        for (var i = 0; i < window.playerData.playerList.length; i++) {
+            if (batterName == window.playerData.playerList[i].playerName) {
+                batter = window.playerData.playerList[i];
+                break;
+            }
+        }
+        if (!batter) {
+            return;
+        }
+
+        var type = batter.batterType.charAt(0).toUpperCase() + batter.batterType.slice(1, batter.batterType.length);
+        $('#batterTypeBadge').html(type);
+        $('#batterHandBadge').html(batter.hand);
     }
 });
 
