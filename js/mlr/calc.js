@@ -83,3 +83,27 @@ function doCalc() {
 
     $('#result').html("Result: " + result.result + " (Diff: " + diff + ")<br/>(" + result.start_number + " - " + result.end_number + ")");
 }
+
+function doManualCalc() {
+    // get values
+    var pitcherType = $("input:radio[name ='inlineRadioOptions1']:checked").val();
+    var pitcherHand = $("input:radio[name ='inlineRadioOptions2']:checked").val();
+    var batterType = $("input:radio[name ='inlineRadioOptions3']:checked").val();
+    var batterHand = $("input:radio[name ='inlineRadioOptions4']:checked").val();
+
+    var pitch = parseInt($('.manual-pitcher-number').val());
+    var swing = parseInt($('.manual-batter-number').val());
+
+    if (!pitch || !swing || pitch < 1 || pitch > 1000 || swing < 1 || swing > 1000) {
+        $('#manualResult').html("Invalid numbers!");
+        return;
+    }
+
+    var fakePitcher = {'pitcherType': pitcherType, 'hand': pitcherHand};
+    var fakeBatter = {'batterType': batterType, 'hand': batterHand};
+
+    var result = getResult(fakePitcher, pitch, fakeBatter, swing);
+    var diff = getDifference(pitch, swing);
+
+    $('#manualResult').html("Result: " + result.result + " (Diff: " + diff + ")<br/>(" + result.start_number + " - " + result.end_number + ")");
+}

@@ -37,10 +37,18 @@
       <div class="loadText">Pulling players and stats from sheets</div>
     </div>
     <div class="container">
+      <nav class="actual-navbar">
+        <ul class="nav nav-tabs">
+          <li role="presentation" id="playerCalcLink" class="active"><a href="#">Player</a></li>
+          <li role="presentation" id="manualCalcLink"><a href="#">Manual</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="playerCalcPanel" class="container">
       <!-- Example row of columns -->
       <div class="pitcher-box col-md-6">
         <div id="pitcherBox" class="form-group">
-          <h2>Pitcher</h2>
+          <h3>Pitcher</h3>
           <input class="form-control input-lg pitcher-text" placeholder="Enter pitcher..."/>
           <input class="form-control input-lg pitcher-number" placeholder="Pitch #..."/>
         </div>
@@ -48,7 +56,7 @@
       </div>
       <div class="batter-box col-md-6">
         <div id="batterBox" class="form-group">
-          <h2>Batter</h2>
+          <h3>Batter</h3>
           <input class="form-control input-lg batter-text" placeholder="Enter batter..."/>
           <input class="form-control input-lg batter-number" placeholder="Swing #..."/>
         </div>
@@ -61,13 +69,70 @@
           <span id="batterTypeBadge" class="badge"></span><span id="batterHandBadge" class="badge"></span>
       </div>
       <div class="action-buttons col-md-6" style="text-align: center">
-        <a id="calcButton" class="btn btn-default disabled" href="javascript:doCalc();" role="button">Test Calculator &raquo;</a>
-        <a class="btn btn-danger disabled" href="javascript:resetCalc();" role="button">Reset Fields &raquo;</a>
+        <a id="calcButton" class="btn btn-default disabled" href="javascript:doCalc();" role="button">Calculate &raquo;</a>
       </div>
       <div class="result-box col-md-6">
         <p id="result">Result here.</p>
       </div>
     </div> <!-- /container -->
+
+
+    <div id="manualCalcPanel" class="container" style="display:none">
+      <div class="manual-pitcher-box col-md-6">
+        <h3>Pitcher</h3>
+        <h4>Type</h4>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="balanced" checked> Balanced
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="finesse"> Finesse
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions1" id="inlineRadio3" value="strikeout"> Strikeout
+        </label>
+
+        <h4>Hand</h4>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions2" id="inlineRadio1" value="right" checked> Right
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions2" id="inlineRadio2" value="left"> Left
+        </label>
+        <input class="form-control input-lg manual-pitcher-number" placeholder="Pitch #..."/>
+      </div>
+      <div class="manual-batter-box col-md-6">
+        <h3>Batter</h3>
+        <h4>Type</h4>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions3" id="inlineRadio1" value="neutral" checked> Neutral
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions3" id="inlineRadio2" value="contact"> Contact
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="power"> Power
+        </label>
+
+        <h4>Hand</h4>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions4" id="inlineRadio1" value="right" checked> Right
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions4" id="inlineRadio2" value="left"> Left
+        </label>
+        <input class="form-control input-lg manual-batter-number" placeholder="Swing #..."/>
+      </div>
+      <div class="action-buttons col-md-6" style="text-align: center">
+        <a id="manualCalcButton" class="btn btn-default" href="javascript:doManualCalc();" role="button">Calculate &raquo;</a>
+      </div>
+      <div class="result-box col-md-6">
+        <p id="manualResult">Result here.</p>
+      </div>
+    </div>
+
+
+
+    <!-- Footer -->
     <div class="footer">
       &copy; 2018 Zum Boehner Enterprises for /r/fakebaseball, some calculator code &copy; 2017 /u/aviator157
     </div>
@@ -79,6 +144,7 @@
     <script src="js/mlr/abResults.js"></script>
     <script src="js/mlr/calc.js"></script>
     <script src="js/mlr/sheets.js"></script>
+    <script src="js/mlr/handlers.js"></script>
     <script src="js/main.js"></script>
     
     </body>
