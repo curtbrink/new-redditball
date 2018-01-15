@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>MLR Calculator Redux</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,6 +24,8 @@
         <![endif]-->
     </head>
     <body>
+    
+    <!-- Header with title -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -32,10 +34,13 @@
       </div>
     </nav>
 
+    <!-- Loading indicator container -->
     <div class="loadingContainer">
       <div class="loader"></div>
       <div class="loadText">Pulling players and stats from sheets</div>
     </div>
+
+    <!-- Page tabs -->
     <div class="container">
       <nav class="actual-navbar">
         <ul class="nav nav-tabs">
@@ -44,8 +49,9 @@
         </ul>
       </nav>
     </div>
+
+    <!-- Player search calculator panel -->
     <div id="playerCalcPanel" class="container">
-      <!-- Example row of columns -->
       <div class="pitcher-box col-md-6">
         <div id="pitcherBox" class="form-group">
           <h3>Pitcher</h3>
@@ -74,9 +80,9 @@
       <div class="result-box col-md-6">
         <p id="result">Result here.</p>
       </div>
-    </div> <!-- /container -->
+    </div>
 
-
+    <!-- Manual calculator panel -->
     <div id="manualCalcPanel" class="container" style="display:none">
       <div class="manual-pitcher-box col-md-6">
         <h3>Pitcher</h3>
@@ -130,8 +136,6 @@
       </div>
     </div>
 
-
-
     <!-- Footer -->
     <div class="footer">
       &copy; 2018 Zum Boehner Enterprises for /r/fakebaseball, some calculator code &copy; 2017 /u/aviator157
@@ -139,7 +143,7 @@
     <script src="js/vendor/jquery-1.11.2.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
 
-    <!-- MLR stuff -->
+    <!-- JS stuff -->
     <script src="js/mlr/player.js"></script>
     <script src="js/mlr/abResults.js"></script>
     <script src="js/mlr/calc.js"></script>
