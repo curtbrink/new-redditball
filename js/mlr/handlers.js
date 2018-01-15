@@ -2,37 +2,37 @@
 
 // number validation
 function checkInputs() {
-    var pitch = parseInt($('.pitcher-number').val());
-    var swing = parseInt($('.batter-number').val());
+    var pitch = parseInt($('#pitcherNumber').val());
+    var swing = parseInt($('#batterNumber').val());
 
     if (!isNaN(pitch) && (pitch > 0 && pitch < 1001)) {
-        $('#pitcherBox').removeClass('has-error');
+        $('#pitcherInfo').removeClass('has-error');
     } else {
-        $('#pitcherBox').addClass('has-error');
+        $('#pitcherInfo').addClass('has-error');
     }
 
     if (!isNaN(swing) && (swing > 0 && swing < 1001)) {
-        $('#batterBox').removeClass('has-error');
+        $('#batterInfo').removeClass('has-error');
     } else {
-        $('#batterBox').addClass('has-error');
+        $('#batterInfo').addClass('has-error');
     }
 
-    if ($('#batterBox').hasClass('has-error') || $('#pitcherBox').hasClass('has-error')) {
+    if ($('#batterInfo').hasClass('has-error') || $('#pitcherInfo').hasClass('has-error')) {
         $('#calcButton').addClass('disabled');
     } else {
         $('#calcButton').removeClass('disabled');
     }
 }
 
-$(function(){$('.batter-number').keyup(checkInputs)});
-$(function(){$('.pitcher-number').keyup(checkInputs)});
+$(function(){$('#batterNumber').keyup(checkInputs)});
+$(function(){$('#pitcherNumber').keyup(checkInputs)});
 
 
 // player autocomplete
 $(function(){
-    $('.pitcher-text').keyup(function(){
+    $('#pitcherText').keyup(function(){
         $('#pitcherListItems').css('display', '');
-        var current_query = $('.pitcher-text').val().toLowerCase();
+        var current_query = $('#pitcherText').val().toLowerCase();
         if (current_query !== "") {
             $("#pitcherListItems li").hide();
             $("#pitcherListItems li").each(function(){
@@ -47,9 +47,9 @@ $(function(){
     })
 });
 $(function(){
-    $('.batter-text').keyup(function(){
+    $('#batterText').keyup(function(){
         $('#batterListItems').css('display', '');
-        var current_query = $('.batter-text').val().toLowerCase();
+        var current_query = $('#batterText').val().toLowerCase();
         if (current_query !== "") {
             $("#batterListItems li").hide();
             $("#batterListItems li").each(function(){
@@ -67,11 +67,11 @@ $(function(){
 $('#pitcherListItems').click(function(e) {
     if (e.target && e.target.nodeName == "LI") {
         var pitcherText = e.target.textContent;
-        $('.pitcher-text').val(pitcherText.slice(0, pitcherText.indexOf(')')+1));
+        $('#pitcherText').val(pitcherText.slice(0, pitcherText.indexOf(')')+1));
         $('#pitcherListItems').css('display', 'none');
 
         // badges
-        var pitcherName = $('.pitcher-text').val();
+        var pitcherName = $('#pitcherText').val();
         pitcherName = pitcherName.slice(0, pitcherName.indexOf("(") - 1);
         
         var pitcher;
@@ -93,11 +93,11 @@ $('#pitcherListItems').click(function(e) {
 $('#batterListItems').click(function(e) {
     if (e.target && e.target.nodeName == "LI") {
         var batterText = e.target.textContent;
-        $('.batter-text').val(batterText.slice(0, batterText.indexOf(')')+1));
+        $('#batterText').val(batterText.slice(0, batterText.indexOf(')')+1));
         $('#batterListItems').css('display', 'none');
 
         // badges
-        var batterName = $('.batter-text').val();
+        var batterName = $('#batterText').val();
         batterName = batterName.slice(0, batterName.indexOf("(") - 1);
         
         var batter;

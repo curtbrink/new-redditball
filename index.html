@@ -50,7 +50,7 @@
       </nav>
     </div>
 
-    <!-- Player search calculator panel -->
+    <!-- Player search calculator panel
     <div id="playerCalcPanel" class="container">
       <div class="pitcher-box col-md-6">
         <div id="pitcherBox" class="form-group">
@@ -79,6 +79,42 @@
       </div>
       <div class="result-box col-md-6">
         <p id="result">Result here.</p>
+      </div>
+    </div>
+  -->
+
+    <!-- NEW PLAYER SEARCH PANEL -->
+    <div id="playerCalcPanel" class="container">
+      <!-- first row: Selection box, list, and badges -->
+      <div class="player-container row">
+        <!-- first column: pitcher info -->
+        <div class="player-box col-md-6">
+          <div id="pitcherInfo" class="row form-group">
+            <h3>Pitcher</h3>
+            <input id="pitcherText" class="form-control input-lg" placeholder="Enter pitcher..."/>
+            <input id="pitcherNumber" class="form-control input-lg" placeholder="Pitch #..."/>
+          </div>
+          <div class="row">
+            <span id="pitcherTypeBadge" class="badge"></span><span id="pitcherHandBadge" class="badge"></span>
+          </div>
+          <div class="row">
+            <ul id="pitcherListItems" class="list-group" style="display:none"></ul>
+          </div>
+        </div>
+        <!-- second column: batter info -->
+        <div class="player-box col-md-6">
+          <div id="batterInfo" class="row form-group">
+            <h3>Batter</h3>
+            <input id="batterText" class="form-control input-lg" placeholder="Enter batter..."/>
+            <input id="batterNumber" class="form-control input-lg" placeholder="Swing #..."/>
+          </div>
+          <div class="row">
+            <span id="batterTypeBadge" class="badge"></span><span id="batterHandBadge" class="badge"></span>
+          </div>
+          <div class="row">
+            <ul id="batterListItems" class="list-group" style="display:none"></ul>
+          </div>
+        </div>
       </div>
     </div>
 
