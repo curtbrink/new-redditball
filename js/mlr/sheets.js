@@ -4,21 +4,16 @@ var API_KEY = "AIzaSyBwqi6e_o1xg7pnJjyG3pnUa9MsWEXksgQ";
 var URL = "https://sheets.googleapis.com/v4/spreadsheets/1sAhE5H_635BE4u4ivV6otl2Vdbq6pwmc0E_MDhL_N5k/values:batchGet?"
 
 function buildWholeUrl() {
-    var dataRangeMajors = "C3:AE17";
-    var dataRangeMinors = "C3:AE28";
+    var dataRangeMajors = "C3:AE22";
 
     var majorsTeams = ["BAL", "CLE", "TOR", "BOS", "DET", "TBR",
                        "HOU", "MIN", "SEA", "OAK", "TEX",
                        "MTL", "PHI", "PIT", "WSH", "MIL", "STL",
                        "COL", "ARI", "LAD", "SDP", "SFG"];
-    var minorsTeams = ["TOL", "SAC"];
 
     var requestString = URL;
     for (var i = 0; i < majorsTeams.length; i++) {
         requestString += buildTeamRange(majorsTeams[i], dataRangeMajors);
-    }
-    for (var i = 0; i < minorsTeams.length; i++) {
-        requestString += buildTeamRange(minorsTeams[i], dataRangeMinors);
     }
     requestString += buildKey();
 
