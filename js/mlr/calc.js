@@ -44,8 +44,8 @@ function getResult(pitcher, pitch, batter, swing) {
 
 function doCalc() {
     console.log("Doing calc");
-    var pitcherName = $('.pitcher-text').val();
-    var batterName = $('.batter-text').val();
+    var pitcherName = $('#pitcherText').val();
+    var batterName = $('#batterText').val();
 
     pitcherName = pitcherName.slice(0, pitcherName.indexOf("(") - 1);
     batterName = batterName.slice(0, batterName.indexOf("(") - 1);
@@ -71,12 +71,12 @@ function doCalc() {
         }
     }
     if (!batter) {
-        $('result').html('Batter not found');
+        $('#result').html('Batter not found');
         return;
     }
     
-    var pitch = parseInt($('.pitcher-number').val());
-    var swing = parseInt($('.batter-number').val());
+    var pitch = parseInt($('#pitcherNumber').val());
+    var swing = parseInt($('#batterNumber').val());
 
     var result = getResult(pitcher, pitch, batter, swing);
     var diff = getDifference(pitch, swing);
