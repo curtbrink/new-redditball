@@ -9,7 +9,8 @@ function buildWholeUrl() {
     var majorsTeams = ["BAL", "CLE", "TOR", "BOS", "DET", "TBR",
                        "HOU", "MIN", "SEA", "OAK", "TEX",
                        "MTL", "PHI", "PIT", "WSH", "MIL", "STL",
-                       "COL", "ARI", "LAD", "SDP", "SFG"];
+                       "COL", "ARI", "LAD", "SDP", "SFG",
+                       "OFH"];
 
     var requestString = URL;
     for (var i = 0; i < majorsTeams.length; i++) {
