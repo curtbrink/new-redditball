@@ -56,6 +56,10 @@ body {
   font-size: 24pt;
 }
 
+.pitch-settings {
+  margin-top: 20px;
+}
+
 #pitcherText, #batterText {
   float: left;
   width: 75%;

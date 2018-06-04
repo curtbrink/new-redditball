@@ -9,7 +9,7 @@ function getDifference(pitch, swing) {
     return result;
 }
 
-function getResult(pitcher, pitch, batter, swing) {
+function getResult(pitcher, pitch, batter, swing, pitchType, guessCorrect) {
     var diff = getDifference(pitch, swing);
 
     var pitcherType, hand;
@@ -25,8 +25,9 @@ function getResult(pitcher, pitch, batter, swing) {
     }
 
     var batterType = batter.batterType;
+    var pitchGuess = guessCorrect ? 'correct' : 'incorrect';
 
-    var abRow = results_dict['fastball']['correct'][batterType][pitcherType][hand];
+    var abRow = results_dict[pitchType][pitchGuess][batterType][pitcherType][hand];
     for (var i = 0; i < abRow.length; i++) {
 
         if (diff >= abRow[i].start_number && diff <= abRow[i].end_number) {
@@ -46,6 +47,8 @@ function doCalc() {
     console.log("Doing calc");
     var pitcherName = $('#pitcherText').val();
     var batterName = $('#batterText').val();
+    var pitchType = $("input:radio[name = 'inlinePitchType']:checked").val();
+    var guessCorrect = $("#pitchGuess").is(':checked');
 
     pitcherName = pitcherName.slice(0, pitcherName.indexOf("(") - 1);
     batterName = batterName.slice(0, batterName.indexOf("(") - 1);
@@ -78,7 +81,7 @@ function doCalc() {
     var pitch = parseInt($('#pitcherNumber').val());
     var swing = parseInt($('#batterNumber').val());
 
-    var result = getResult(pitcher, pitch, batter, swing);
+    var result = getResult(pitcher, pitch, batter, swing, pitchType, guessCorrect);
     var diff = getDifference(pitch, swing);
 
     $('#result').html("Result: " + result.result + " (Diff: " + diff + ")<br/>(" + result.start_number + " - " + result.end_number + ")");
@@ -90,6 +93,8 @@ function doManualCalc() {
     var pitcherHand = $("input:radio[name ='inlineRadioOptions2']:checked").val();
     var batterType = $("input:radio[name ='inlineRadioOptions3']:checked").val();
     var batterHand = $("input:radio[name ='inlineRadioOptions4']:checked").val();
+    var pitchType = $("input:radio[name = 'inlinePitchType']:checked").val();
+    var guessCorrect = $("#pitchGuess").is(':checked');
 
     var pitch = parseInt($('.manual-pitcher-number').val());
     var swing = parseInt($('.manual-batter-number').val());
@@ -102,7 +107,7 @@ function doManualCalc() {
     var fakePitcher = {'pitcherType': pitcherType, 'hand': pitcherHand};
     var fakeBatter = {'batterType': batterType, 'hand': batterHand};
 
-    var result = getResult(fakePitcher, pitch, fakeBatter, swing);
+    var result = getResult(fakePitcher, pitch, fakeBatter, swing, pitchType, guessCorrect);
     var diff = getDifference(pitch, swing);
 
     $('#manualResult').html("Result: " + result.result + " (Diff: " + diff + ")<br/>(" + result.start_number + " - " + result.end_number + ")");

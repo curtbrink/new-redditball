@@ -202,10 +202,18 @@ function handleNewABData() {
             for (k = 0; k < 10; k++) {
                 var numberRange = row[k+3];
                 switch (i) {
-                    case 0: results_dict['fastball']['correct'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
-                    case 1: results_dict['fastball']['incorrect'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
-                    case 2: results_dict['breaking']['correct'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
-                    case 3: results_dict['breaking']['incorrect'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
+                    case 0: 
+                        results_dict['fastball']['correct'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
+                        break;
+                    case 1:
+                        results_dict['fastball']['incorrect'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
+                        break;
+                    case 2:
+                        results_dict['breaking']['correct'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
+                        break;
+                    case 3:
+                        results_dict['breaking']['incorrect'][row[0]][row[1]][row[2]].push(createRangeObject(numberRange, columns[k]));
+                        break;
                 }
             }
         }
