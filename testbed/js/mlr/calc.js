@@ -26,7 +26,7 @@ function getResult(pitcher, pitch, batter, swing) {
 
     var batterType = batter.batterType;
 
-    var abRow = results_dict[pitcherType][batterType][hand];
+    var abRow = results_dict['fastball']['correct'][batterType][pitcherType][hand];
     for (var i = 0; i < abRow.length; i++) {
 
         if (diff >= abRow[i].start_number && diff <= abRow[i].end_number) {
