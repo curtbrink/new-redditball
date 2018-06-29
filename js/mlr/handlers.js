@@ -75,9 +75,9 @@ $('#pitcherListItems').click(function(e) {
         pitcherName = pitcherName.slice(0, pitcherName.indexOf("(") - 1);
         
         var pitcher;
-        for (var i = 0; i < window.playerData.pitcherList.length; i++) {
-            if (pitcherName == window.playerData.pitcherList[i].playerName) {
-                pitcher = window.playerData.pitcherList[i];
+        for (var i = 0; i < window.playerList.length; i++) {
+            if (pitcherName == window.playerList[i].name) {
+                pitcher = window.playerList[i];
                 break;
             }
         }
@@ -85,8 +85,7 @@ $('#pitcherListItems').click(function(e) {
             return;
         }
 
-        var type = pitcher.pitcherType.charAt(0).toUpperCase() + pitcher.pitcherType.slice(1, pitcher.pitcherType.length);
-        $('#pitcherTypeBadge').html(type);
+        $('#pitcherTypeBadge').html(pitcher.pitcherType);
         $('#pitcherHandBadge').html(pitcher.hand);
     }
 });
@@ -101,18 +100,16 @@ $('#batterListItems').click(function(e) {
         batterName = batterName.slice(0, batterName.indexOf("(") - 1);
         
         var batter;
-        for (var i = 0; i < window.playerData.playerList.length; i++) {
-            if (batterName == window.playerData.playerList[i].playerName) {
-                batter = window.playerData.playerList[i];
+        for (var i = 0; i < window.playerList.length; i++) {
+            if (batterName == window.playerList[i].name) {
+                batter = window.playerList[i];
                 break;
             }
         }
         if (!batter) {
             return;
         }
-
-        var type = batter.batterType.charAt(0).toUpperCase() + batter.batterType.slice(1, batter.batterType.length);
-        $('#batterTypeBadge').html(type);
+        $('#batterTypeBadge').html(batter.hitterType);
         $('#batterHandBadge').html(batter.hand);
     }
 });

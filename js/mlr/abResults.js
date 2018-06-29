@@ -1,6 +1,6 @@
 var results_dict = {
-    'balanced': {
-      'neutral': {
+    'Balanced': {
+      'Neutral': {
           'same': [
               {
                   'start_number': 0,
@@ -106,7 +106,7 @@ var results_dict = {
               }
           ]
       },
-      'contact': {
+      'Contact': {
           'same': [
               {
                   'start_number': 0,
@@ -212,7 +212,7 @@ var results_dict = {
               }
           ]
       },
-      'power': {
+      'Power': {
           'same': [
               {
                   'start_number': 0,
@@ -319,8 +319,8 @@ var results_dict = {
           ]
       }
     },
-    'strikeout': {
-        'neutral': {
+    'Strikeout': {
+        'Neutral': {
             'same': [
                 {
                     'start_number': 0,
@@ -426,7 +426,7 @@ var results_dict = {
                 }
             ]
         },
-        'contact': {
+        'Contact': {
             'same': [
                 {
                     'start_number': 0,
@@ -532,7 +532,7 @@ var results_dict = {
                 }
             ]
         },
-        'power': {
+        'Power': {
             'same': [
                 {
                     'start_number': 0,
@@ -639,8 +639,8 @@ var results_dict = {
             ]
         }
     },
-    'finesse': {
-        'neutral': {
+    'Finesse': {
+        'Neutral': {
             'same': [
                 {
                     'start_number': 0,
@@ -746,7 +746,7 @@ var results_dict = {
                 }
             ]
         },
-        'contact': {
+        'Contact': {
             'same': [
                 {
                     'start_number': 0,
@@ -852,7 +852,7 @@ var results_dict = {
                 }
             ]
         },
-        'power': {
+        'Power': {
             'same': [
                 {
                     'start_number': 0,

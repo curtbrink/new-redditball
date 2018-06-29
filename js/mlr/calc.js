@@ -10,11 +10,16 @@ function getDifference(pitch, swing) {
 }
 
 function getResult(pitcher, pitch, batter, swing) {
+
+    if (pitcher.pitcherType == null || pitcher.hand == null || batter.hitterType == null || batter.hand == null) {
+        return null;
+    }
+
     var diff = getDifference(pitch, swing);
 
     var pitcherType, hand;
-    if (pitcher.pitcherType == null) {
-        pitcherType = "balanced";
+    if (pitcher.pitcherType == 'Position') {
+        pitcherType = "Balanced";
         hand = "different";
     } else {
         pitcherType = pitcher.pitcherType;
@@ -24,7 +29,7 @@ function getResult(pitcher, pitch, batter, swing) {
             hand = "different";
     }
 
-    var batterType = batter.batterType;
+    var batterType = batter.hitterType;
 
     var abRow = results_dict[pitcherType][batterType][hand];
     for (var i = 0; i < abRow.length; i++) {
@@ -52,9 +57,9 @@ function doCalc() {
 
     // lookup
     var pitcher;
-    for (var i = 0; i < window.playerData.pitcherList.length; i++) {
-        if (pitcherName == window.playerData.pitcherList[i].playerName) {
-            pitcher = window.playerData.pitcherList[i];
+    for (var i = 0; i < window.playerList.length; i++) {
+        if (pitcherName == window.playerList[i].name) {
+            pitcher = window.playerList[i];
             break;
         }
     }
@@ -64,9 +69,9 @@ function doCalc() {
     }
 
     var batter;
-    for (var i = 0; i < window.playerData.playerList.length; i++) {
-        if (batterName == window.playerData.playerList[i].playerName) {
-            batter = window.playerData.playerList[i];
+    for (var i = 0; i < window.playerList.length; i++) {
+        if (batterName == window.playerList[i].name) {
+            batter = window.playerList[i];
             break;
         }
     }
@@ -81,7 +86,11 @@ function doCalc() {
     var result = getResult(pitcher, pitch, batter, swing);
     var diff = getDifference(pitch, swing);
 
-    $('#result').html("Result: " + result.result + " (Diff: " + diff + ")<br/>(" + result.start_number + " - " + result.end_number + ")");
+    if (result == null) {
+        $('#result').html("Methinks one of these players is missing a type or hand...");
+    } else {
+        $('#result').html("Result: " + result.result + " (Diff: " + diff + ")<br/>(" + result.start_number + " - " + result.end_number + ")");
+    }
 }
 
 function doManualCalc() {

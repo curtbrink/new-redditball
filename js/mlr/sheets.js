@@ -1,23 +1,10 @@
 // sheets.js - all the stuff related to the sheets api and pulling player data
 
 var API_KEY = "AIzaSyBwqi6e_o1xg7pnJjyG3pnUa9MsWEXksgQ";
-var URL = "https://sheets.googleapis.com/v4/spreadsheets/1sAhE5H_635BE4u4ivV6otl2Vdbq6pwmc0E_MDhL_N5k/values:batchGet?"
+var URL = "https://sheets.googleapis.com/v4/spreadsheets/1LeshCWnkQf3RA4nNPD5rEDHqQ-1DnquCRNJstGzk6go/values:batchGet?"
 
 function buildWholeUrl() {
-    var dataRangeMajors = "C3:AE22";
-
-    var majorsTeams = ["BAL", "CLE", "TOR", "BOS", "DET", "TBR",
-                       "HOU", "MIN", "SEA", "OAK", "TEX",
-                       "MTL", "PHI", "PIT", "WSH", "MIL", "STL",
-                       "COL", "ARI", "LAD", "SDP", "SFG",
-                       "OFH"];
-
-    var requestString = URL;
-    for (var i = 0; i < majorsTeams.length; i++) {
-        requestString += buildTeamRange(majorsTeams[i], dataRangeMajors);
-    }
-    requestString += buildKey();
-
+    var requestString = URL + "ranges=%27Calculator%20Info%27%21A2:G421&" + buildKey();
     return requestString;
 }
 
@@ -38,65 +25,96 @@ function buildPlayerList() {
 function handleData() {
     // data passed as arguments
 
-    var everyPlayer = [];
-    var pitchers = [];
-    var rosters = arguments[0].valueRanges;
+    //console.log(arguments[0].valueRanges);
 
-    for (var i = 0; i < rosters.length; i++) {
-        everyPlayer = everyPlayer.concat(parseSpreadsheetData(rosters[i]));
+    var playerList = [];
+    var playerRanges = arguments[0].valueRanges[0].values;
+    for (var i = 0; i < arguments[0].valueRanges[0].values.length; i++) {
+        var player = buildPlayer(playerRanges[i]);
+        if (player != null) {
+            //console.log(player);
+            playerList.push(player);
+        }
     }
 
-    pitchers = everyPlayer.filter(player => player.isPitcher);
+    window.playerList = playerList;
+    window.playerList.forEach(function(player) {
+        var pitcherBadge, hitterBadge;
+        switch(player.pitcherType) {
+            case 'Strikeout':
+                pitcherBadge = 'STR';
+                break;
+            case 'Finesse':
+                pitcherBadge = 'FIN';
+                break;
+            case 'Balanced':
+                pitcherBadge = 'BAL';
+                break;
+            case 'Position':
+                pitcherBadge = 'POS';
+                break;
+            default:
+                pitcherBadge = '???';
+                break;
+        }
+        
+        switch(player.hitterType) {
+            case 'Power':
+                hitterBadge = 'POW';
+                break;
+            case 'Contact':
+                hitterBadge = 'CON';
+                break;
+            case 'Neutral':
+                hitterBadge = 'NEU';
+                break;
+            default:
+                hitterBadge = '???';
+                break;
+        }
 
-    window.playerData = {
-        playerList: everyPlayer,
-        pitcherList: pitchers
-    };
+        switch (player.hand) {
+            case 'Left':
+                pitcherBadge += " / L";
+                hitterBadge += " / L";
+                break;
+            case 'Right':
+                pitcherBadge += " / R";
+                hitterBadge += " / R";
+                break;
+            default:
+                pitcherBadge += " / ?";
+                hitterBadge += " / ?";
+                break;
+        }
 
-    window.playerData.pitcherList.forEach(function(player) {
-        var badge = "BAL";
-        if (player.pitcherType == "finesse")
-            badge = "FIN";
-        else if (player.pitcherType == "strikeout")
-            badge = "STR";
-        badge += " / ";
-        var hand = "R";
-        if (player.hand == "Left")
-            hand = "L";
-        badge += hand;
+        $('#pitcherListItems').append('<li class="list-group-item">' + player.name + ' ' + player.user + '<span class="badge">' + pitcherBadge + '</span></li>');
+        $('#batterListItems').append('<li class="list-group-item">' + player.name + ' ' + player.user + '<span class="badge">' + hitterBadge + '</span></li>');
 
-        $('#pitcherListItems').append('<li class="list-group-item">' + player.playerName + ' (' + player.redditName + ')<span class="badge">' + badge + '</span></li>');
-    });
-
-    window.playerData.playerList.forEach(function(player) {
-        var badge = "NEU";
-        if (player.batterType == "power")
-            badge = "POW";
-        else if (player.batterType == "contact")
-            badge = "CON";
-        badge += " / ";
-        var hand = "R";
-        if (player.hand == "Left")
-            hand = "L";
-        badge += hand;
-
-        $('#batterListItems').append('<li class="list-group-item">' + player.playerName + ' (' + player.redditName + ')<span class="badge">' + badge + '</span></li>');
-    });
+    })
 
     $(".loadingContainer").css("display", "none");
 }
 
-function parseSpreadsheetData(data) {
-    // data is a response from the sheets api
+function buildPlayer(playerArray) {
+    if (playerArray[0] == "") { return null; }
 
-    var players = [];
-    var playerRows = data.values;
-    for (var i = 0; i < playerRows.length; i++) {
-        if (playerRows[i].length == 0)
-            continue;
-        
-        players.push(new Player(playerRows[i]));
-    }
+    // columns:
+    // 0     1         2       3            4       5             6
+    // name, username, unused, hitter type, unused, pitcher type, hand
 
-    return players;
+    player = {};
+    player.name = playerArray[0];
+    player.user = playerArray[1];
+
+    if (playerArray[3] != "")
+        player.hitterType = playerArray[3];
+    
+    if (playerArray[5] != "")
+        player.pitcherType = playerArray[5];
+    
+    if (playerArray[6] != "")
+        player.hand = playerArray[6];
+    
+    return player;
 }
